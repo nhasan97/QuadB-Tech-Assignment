@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import "./ShowCard.css";
 import { GrSchedulePlay } from "react-icons/gr";
 import { FaLanguage } from "react-icons/fa";
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
 
 const ShowCard = ({ show }) => {
   const { image, name, language, genres, schedule, status, rating } = show;
@@ -15,7 +17,9 @@ const ShowCard = ({ show }) => {
 
         <div className="genre-container">
           {genres.map((genre) => (
-            <p key={genre}>{genre}</p>
+            <p key={genre} className="badge">
+              {genre}
+            </p>
           ))}
         </div>
 
@@ -34,7 +38,11 @@ const ShowCard = ({ show }) => {
 
         <p>Status | {status}</p>
 
-        <p>{rating?.average}</p>
+        <div className="schedule-container">
+          <Rating style={{ maxWidth: 100 }} value={rating?.average} readOnly />
+          <p>{rating?.average}</p>
+        </div>
+
         <Link className="show-card-btn">Summery</Link>
       </div>
     </div>

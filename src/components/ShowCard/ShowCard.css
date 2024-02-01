@@ -21,7 +21,7 @@
   flex-direction: column;
   justify-items: center;
   align-items: start;
-  gap: 6px;
+  gap: 10px;
   background-color: #2e2e2e;
   padding: 20px;
   height: 100%;
@@ -35,6 +35,16 @@
   display: flex;
   align-items: center;
   gap: 6px
+}
+
+.genre-container {
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 2px 8px;
+  border: 1px solid #7a7a7a;
+  border-radius: 9999px;
 }
 
 .show-card-btn {
