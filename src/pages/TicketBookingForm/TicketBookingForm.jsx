@@ -2,11 +2,36 @@ import { useParams } from "react-router-dom";
 import useGetParticularShow from "../../hooks/useGetParticularShow";
 import Loading from "../../components/Loading/Loading";
 import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
+import { addToCart, getCart } from "../../Utilities/LocalStorage";
 
 const TicketBookingForm = () => {
   const showId = useParams();
   const [loading, matchedShow] = useGetParticularShow(showId.id);
-  console.log(showId.id);
+
+  const [bookings, setBookings] = useState([]);
+
+  useEffect(() => {
+    fetch("./bookings.json")
+      .then((res) => res.json())
+      .then((data) => setBookings(data));
+  }, []);
+
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    if (bookings.length > 0) {
+      const cart = getCart();
+      const bookingsInCart = [];
+      for (const id of cart) {
+        const showObj = bookings.find((show) => show.show.id === id);
+        if (showObj) {
+          bookingsInCart.push(showObj);
+        }
+      }
+      setCartItems(bookingsInCart);
+    }
+  }, [bookings]);
 
   const handleUpdateSurvey = (e) => {
     e.preventDefault();
@@ -45,6 +70,14 @@ const TicketBookingForm = () => {
 
       console.log(booking);
 
+      const newCartItems = [...cartItems, booking];
+      setCartItems(newCartItems);
+      addToCart(booking);
+      Swal.fire({
+        title: "Good job!",
+        text: "You clicked the button!",
+        icon: "success",
+      });
       //   form.reset();
     }
   };
