@@ -4,6 +4,7 @@ import Loading from "../../components/Loading/Loading";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import { addToCart, getCart } from "../../Utilities/LocalStorage";
+import "./TicketBookingForm.css";
 
 const TicketBookingForm = () => {
   const showId = useParams();
@@ -74,8 +75,8 @@ const TicketBookingForm = () => {
       setCartItems(newCartItems);
       addToCart(booking);
       Swal.fire({
-        title: "Good job!",
-        text: "You clicked the button!",
+        title: "Congrates!!!",
+        text: "Booking done successfully!",
         icon: "success",
       });
       //   form.reset();
@@ -86,8 +87,10 @@ const TicketBookingForm = () => {
     return <Loading></Loading>;
   } else {
     return (
-      <div>
-        <form className="" onSubmit={handleUpdateSurvey}>
+      <div className="booking-form-container">
+        <h1 className="title">Booking Form</h1>
+
+        <form className="booking-form" onSubmit={handleUpdateSurvey}>
           <input
             type="text"
             name="id"
@@ -103,7 +106,7 @@ const TicketBookingForm = () => {
             readOnly
             required
             defaultValue={matchedShow?.show?.name}
-            className=""
+            className="textfield"
           />
 
           <input
@@ -114,7 +117,7 @@ const TicketBookingForm = () => {
             required
             readOnly
             defaultValue={matchedShow?.show?.schedule?.time}
-            className=""
+            className="textfield"
           />
 
           <input
@@ -125,7 +128,7 @@ const TicketBookingForm = () => {
             required
             readOnly
             defaultValue={matchedShow?.show?.schedule?.days[0]}
-            className=""
+            className="textfield"
           />
 
           <input
@@ -134,7 +137,7 @@ const TicketBookingForm = () => {
             name="name"
             placeholder="Your Name"
             required
-            className=""
+            className="textfield"
           />
 
           <input
@@ -143,7 +146,7 @@ const TicketBookingForm = () => {
             name="email"
             placeholder="Your Email"
             required
-            className=""
+            className="textfield"
           />
 
           <input
@@ -152,10 +155,10 @@ const TicketBookingForm = () => {
             name="cell"
             placeholder="Your Phone Number"
             required
-            className=""
+            className="textfield"
           />
 
-          <input type="submit" value="Update" className="" />
+          <input type="submit" value="Submit" className="book-ticket-btn" />
         </form>
       </div>
     );
