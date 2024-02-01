@@ -21,9 +21,13 @@ const ShowSummery = () => {
             <img src={imageNotFound} alt="" />
           )}
         </div>
-        <div className="summery-holder">
+        <div className="show-summery-details-container">
           <h1>{matchedShow?.show?.name}</h1>
-          <p className="summery">Summery | {matchedShow?.show?.summary}</p>
+
+          <div className="summery-holder">
+            <p className="summery">Summery | {matchedShow?.show?.summary}</p>
+          </div>
+
           <Link className="book-ticket-btn" to={`/show-summery`}>
             Book Ticket
           </Link>
