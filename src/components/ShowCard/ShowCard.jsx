@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import "./ShowCard.css";
+import { GrSchedulePlay } from "react-icons/gr";
+import { FaLanguage } from "react-icons/fa";
 
 const ShowCard = ({ show }) => {
-  const { image, name, type, language, genres, schedule, status, rating } =
-    show;
+  const { image, name, language, genres, schedule, status, rating } = show;
   return (
     <div className="show-card">
       <div className="show-card-image-container">
@@ -12,26 +13,26 @@ const ShowCard = ({ show }) => {
       <div className="show-card-details-container">
         <h2>{name}</h2>
 
-        <p>Type | {type}</p>
-
-        <p>Language | {language}</p>
-
         <div className="genre-container">
           {genres.map((genre) => (
             <p key={genre}>{genre}</p>
           ))}
         </div>
 
-        <div className="schedule-container">
-          <p>
-            Schedule | <span>{schedule?.time} </span>
+        <p className="schedule-container">
+          <FaLanguage /> | {language}
+        </p>
+
+        <div>
+          <p className="schedule-container">
+            <GrSchedulePlay></GrSchedulePlay> | <span>{schedule?.time} </span>
             {schedule.days.map((day) => (
               <span key={day}>{day}</span>
             ))}
           </p>
         </div>
 
-        <p>{status}</p>
+        <p>Status | {status}</p>
 
         <p>{rating?.average}</p>
         <Link className="show-card-btn">Summery</Link>
