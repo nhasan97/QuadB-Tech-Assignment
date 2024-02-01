@@ -7,7 +7,7 @@ import "@smastrom/react-rating/style.css";
 import imageNotFound from "../../assets/image-not-found-scaled-1150x647.png";
 
 const ShowCard = ({ show }) => {
-  const { image, name, language, genres, schedule, status, rating } = show;
+  const { id, image, name, language, genres, schedule, status, rating } = show;
   return (
     <div className="show-card">
       <div className="show-card-image-container">
@@ -65,7 +65,9 @@ const ShowCard = ({ show }) => {
           <p>{rating?.average}</p>
         </div>
 
-        <Link className="show-card-btn">Summery</Link>
+        <Link className="show-card-btn" to={`/show-summery/${id}`}>
+          Summery
+        </Link>
       </div>
     </div>
   );

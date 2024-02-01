@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
 import "./Home.css";
 import ShowCard from "../../components/ShowCard/ShowCard";
+import useGetAllShows from "../../hooks/useGetAllShows";
+import Loading from "../../components/Loading/Loading";
 
 const Home = () => {
-  const [shows, setShows] = useState([]);
+  const [loading, shows] = useGetAllShows();
 
-  useEffect(() => {
-    fetch("https://api.tvmaze.com/search/shows?q=all")
-      .then((res) => res.json())
-      .then((data) => {
-        setShows(data);
-      });
-  }, []);
+  if (loading) {
+    <Loading></Loading>;
+  }
 
   return (
     <div className="home-container">

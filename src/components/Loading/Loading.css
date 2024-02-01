@@ -1,0 +1,21 @@
+.loading-container {
+    height: 100vh;
+    max-width: 1536px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-text {
+    color: white;
+    font-size: 60px;
+}
+
+@media screen and (max-width:576px) {
+
+    .loading-text {
+        font-size: 40px;
+    }
+}
