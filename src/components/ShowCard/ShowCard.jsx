@@ -4,39 +4,61 @@ import { GrSchedulePlay } from "react-icons/gr";
 import { FaLanguage } from "react-icons/fa";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import imageNotFound from "../../assets/image-not-found-scaled-1150x647.png";
 
 const ShowCard = ({ show }) => {
   const { image, name, language, genres, schedule, status, rating } = show;
   return (
     <div className="show-card">
       <div className="show-card-image-container">
-        <img src={image?.medium} alt="" />
+        {image?.medium ? (
+          <img src={image?.medium} alt="" />
+        ) : (
+          <img src={imageNotFound} alt="" />
+        )}
       </div>
+
       <div className="show-card-details-container">
-        <h2>{name}</h2>
+        {name ? <h2>{name}</h2> : <h2>No name found</h2>}
 
-        <div className="genre-container">
-          {genres.map((genre) => (
-            <p key={genre} className="badge">
-              {genre}
-            </p>
-          ))}
-        </div>
+        {genres.length > 0 ? (
+          <div className="genre-container">
+            {genres.map((genre) => (
+              <p key={genre} className="badge">
+                {genre}
+              </p>
+            ))}
+          </div>
+        ) : (
+          ""
+        )}
 
-        <p className="schedule-container">
-          <FaLanguage /> | {language}
-        </p>
+        {language ? (
+          <p className="schedule-container">
+            <FaLanguage /> | {language}
+          </p>
+        ) : (
+          <p className="schedule-container">
+            <FaLanguage /> | No language found
+          </p>
+        )}
 
         <div>
-          <p className="schedule-container">
-            <GrSchedulePlay></GrSchedulePlay> | <span>{schedule?.time} </span>
-            {schedule.days.map((day) => (
-              <span key={day}>{day}</span>
-            ))}
-          </p>
+          {schedule?.time && schedule.days.length > 0 ? (
+            <p className="schedule-container">
+              <GrSchedulePlay></GrSchedulePlay> | <span>{schedule?.time} </span>
+              {schedule.days.map((day) => (
+                <span key={day}>{day}</span>
+              ))}
+            </p>
+          ) : (
+            <p className="schedule-container">
+              <GrSchedulePlay></GrSchedulePlay> | <span>No time found</span>
+            </p>
+          )}
         </div>
 
-        <p>Status | {status}</p>
+        {status ? <p>Status | {status}</p> : <p>Status | No status found</p>}
 
         <div className="schedule-container">
           <Rating style={{ maxWidth: 100 }} value={rating?.average} readOnly />
