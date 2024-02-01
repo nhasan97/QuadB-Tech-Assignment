@@ -7,7 +7,7 @@ const Home = () => {
   const [loading, shows] = useGetAllShows();
 
   if (loading) {
-    <Loading></Loading>;
+    return <Loading></Loading>;
   }
 
   return (

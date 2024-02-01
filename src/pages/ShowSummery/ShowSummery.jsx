@@ -6,7 +6,6 @@ import imageNotFound from "../../assets/image-not-found-scaled-1150x647.png";
 
 const ShowSummery = () => {
   const showId = useParams();
-  console.log(showId.id);
   const [loading, matchedShow] = useGetParticularShow(showId.id);
 
   if (loading) {
@@ -28,7 +27,7 @@ const ShowSummery = () => {
             <p className="summery">Summery | {matchedShow?.show?.summary}</p>
           </div>
 
-          <Link className="book-ticket-btn" to={`/show-summery`}>
+          <Link className="book-ticket-btn" to={`/book-ticket/${showId.id}`}>
             Book Ticket
           </Link>
         </div>
